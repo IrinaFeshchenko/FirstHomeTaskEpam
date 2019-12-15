@@ -1,0 +1,7 @@
+C:\Users\Ирина\source\repos\epam1DZ\epam1DZ\bin\Debug\epam1DZ.exe.config
+C:\Users\Ирина\source\repos\epam1DZ\epam1DZ\bin\Debug\epam1DZ.exe
+C:\Users\Ирина\source\repos\epam1DZ\epam1DZ\bin\Debug\epam1DZ.pdb
+C:\Users\Ирина\source\repos\epam1DZ\epam1DZ\obj\Debug\epam1DZ.csprojAssemblyReference.cache
+C:\Users\Ирина\source\repos\epam1DZ\epam1DZ\obj\Debug\epam1DZ.csproj.CoreCompileInputs.cache
+C:\Users\Ирина\source\repos\epam1DZ\epam1DZ\obj\Debug\epam1DZ.exe
+C:\Users\Ирина\source\repos\epam1DZ\epam1DZ\obj\Debug\epam1DZ.pdb
