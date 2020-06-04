@@ -1,0 +1,182 @@
+﻿@model Neibour.ViewModels.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+<meta name="google-signin-client_id" content="180488358910-6i93iphfa7bo26e3rpsr43uabm4v7c63.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<h1 style="text-align:center;color:#ffffff ">Вхід</h1>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #789aeb;
+        }
+
+        .decor {
+            position: relative;
+            max-width: 400px;
+            margin: 50px auto 0;
+            background: white;
+            border-radius: 30px;
+        }
+
+        .form-left-decoration,
+        .form-right-decoration {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 20px;
+            background: #3241e3;
+            border-radius: 20px;
+        }
+
+        .form-left-decoration {
+            bottom: 60px;
+            left: -30px;
+        }
+
+        .form-right-decoration {
+            top: 60px;
+            right: -30px;
+        }
+
+            .form-left-decoration:before,
+            .form-left-decoration:after,
+            .form-right-decoration:before,
+            .form-right-decoration:after {
+                content: "";
+                position: absolute;
+                width: 50px;
+                height: 20px;
+                border-radius: 30px;
+                background: white;
+            }
+
+        .form-left-decoration:before {
+            top: -20px;
+        }
+
+        .form-left-decoration:after {
+            top: 20px;
+            left: 10px;
+        }
+
+        .form-right-decoration:before {
+            top: -20px;
+            right: 0;
+        }
+
+        .form-right-decoration:after {
+            top: 20px;
+            right: 10px;
+        }
+
+        .circle {
+            position: absolute;
+            bottom: 80px;
+            left: -55px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .form-inner {
+            padding: 50px;
+        }
+
+            .form-inner input,
+            .form-inner textarea {
+                display: block;
+                width: 100%;
+                padding: 0 20px;
+                margin-bottom: 10px;
+                background: #E9EFF6;
+                line-height: 40px;
+                border-width: 0;
+                border-radius: 20px;
+                font-family: 'Roboto', sans-serif;
+            }
+
+                .form-inner input[type="submit"] {
+                    margin-top: 30px;
+                    background: #789aeb;
+                    border-bottom: 4px solid #3241e3;
+                    color: white;
+                    font-size: 14px;
+                }
+
+            .form-inner textarea {
+                resize: none;
+            }
+
+            .form-inner h3 {
+                margin-top: 0;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 500;
+                font-size: 24px;
+                color: #707981;
+            }
+
+        .div_space {
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <form class="decor" asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
+        <div class="form-left-decoration"></div>
+        <div class="form-right-decoration"></div>
+        <div class="circle"></div>
+        <div class="form-inner">
+            <div class="validation" asp-validation-summary="ModelOnly" />
+            <div>
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input type="text" asp-for="Email" />
+                    <span asp-validation-for="Email" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">Пароль</label>
+                    <input asp-for="Password" />
+                    <span asp-validation-for="Password" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Войти" class="btn btn-outline-dark" />
+                </div>
+                <div style="width:295px" class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div>
+        </div>
+        <div class="div_space">
+        </div>
+    </form>
+    <script>
+    function onSignIn(googleUser) {
+            profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); 
+            console.log('Name: ' + profile.getName());
+        console.log('Email: ' + profile.getEmail());
+        var auth2 = gapi.auth2.getAuthInstance();
+        var a = null;
+        var b = null;
+        var c = null;
+        if (auth2.isSignedIn.get()) {
+  var profile = auth2.currentUser.get().getBasicProfile();
+  console.log('ID: ' + profile.getId());
+  console.log('Full Name: ' + profile.getName());
+  console.log('Given Name: ' + profile.getGivenName());
+  console.log('Family Name: ' + profile.getFamilyName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+        }
+        a = profile.getFamilyName();
+        b = profile.getGivenName();
+        c = profile.getEmail();
+         var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signOut().then(function () {
+                        console.log('User signed out.');
+                    });
+        window.location.href = '@Html.Raw(@Url.Action("Return", "Account",new { First_name = "p" , Last_name = "b"  ,  email = "d" }))'.replace("p", a).replace("b", b).replace("d",c);
+}
+    </script>

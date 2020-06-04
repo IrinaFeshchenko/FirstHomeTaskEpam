@@ -1,0 +1,393 @@
+﻿@model Neibour.ViewModels.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #789aeb;
+        }
+ 
+        .decor {
+            position: relative;
+            max-width: 400px;
+            margin: 50px auto 0;
+            background: white;
+            border-radius: 30px;
+        }
+
+        .form-left-decoration,
+        .form-right-decoration {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 20px;
+            background: #3241e3;
+            border-radius: 20px;
+        }
+
+        .form-left-decoration {
+            bottom: 60px;
+            left: -30px;
+        }
+
+        .form-right-decoration {
+            top: 60px;
+            right: -30px;
+        }
+
+            .form-left-decoration:before,
+            .form-left-decoration:after,
+            .form-right-decoration:before,
+            .form-right-decoration:after {
+                content: "";
+                position: absolute;
+                width: 50px;
+                height: 20px;
+                border-radius: 30px;
+                background: white;
+            }
+
+        .form-left-decoration:before {
+            top: -20px;
+        }
+
+        .form-left-decoration:after {
+            top: 20px;
+            left: 10px;
+        }
+
+        .form-right-decoration:before {
+            top: -20px;
+            right: 0;
+        }
+
+        .form-right-decoration:after {
+            top: 20px;
+            right: 10px;
+        }
+
+        .circle {
+            position: absolute;
+            bottom: 80px;
+            left: -55px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .form-inner {
+            padding: 50px;
+        }
+
+            .form-inner input,
+            .form-inner textarea {
+                padding: 0 20px;
+                margin-bottom: 10px;
+                background: #E9EFF6;
+                line-height: 40px;
+                border-width: 0;
+                border-radius: 20px;
+                font-family: 'Roboto', sans-serif;
+            }
+
+                .form-inner input[type="submit"] {
+                    margin-top: 30px;
+                    background: #789aeb;
+                    border-bottom: 4px solid #3241e3;
+                    color: white;
+                    font-size: 14px;
+                }   
+
+            .form-inner textarea {
+                resize: none;
+            }
+
+            .form-inner h3 {
+                margin-top: 0;
+                font-family: 'Roboto', sans-serif;
+                font-weight: 500;
+                font-size: 24px;
+                color: #707981;
+            }
+        .div_space {
+            margin-bottom: 10px;
+        }
+    </style>
+
+
+<h1 style="text-align:center;color:#ffffff">Регістрація</h1>
+
+
+<div class="decor" id="test">
+    <div class="form-left-decoration"></div>
+    <div class="form-right-decoration"></div>
+    <div class="circle"></div>
+    <div class="form-inner">
+        <form charset="windows-1251" name="Q" action="" method="post">
+            <tr>
+                <td>Вы когда то наносили умышленный вред себе или окружающим?</td>
+                <br>
+                <input type="radio" name="rb1" value="1"> Да
+                <br>
+                <input type="radio" name="rb1" value="4"> Нет
+            </tr>
+            <tr>
+                <td colspan="2"><hr width="100%" size="1"></td>
+            </tr>
+            <tr>
+                <td>Если бы к вам на улице подошел незнакомый человек, и пригласил к себе домой, вы бы пошли?</td>
+
+                <br>
+                <input type="radio" name="rb2" value="4"> Нет
+                <br>
+                <input type="radio" name="rb2" value="2"> Возможно,зависит от ситуации и человека
+                <br>
+                <input type="radio" name="rb2" value="1"> Да,всегда не против приключений
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr width="100%" size="1"></td>
+            </tr>
+            <tr>
+                <td>Часто ли вы слышите, что то, чем вы занимаетесь – не совсем нормально?</td>
+                <br>
+                <input type="radio" name="rb3" value="4"> Не слышал такого
+                <br>
+                <input type="radio" name="rb3" value="2"> Иногда говорят про мои увлечения
+                <br>
+                <input type="radio" name="rb3" value="1"> Все вокруг не понимаю меня!
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr width="100%" size="1"></td>
+            </tr>
+            <tr>
+                <td>Понятно ли вам утверждение: «Параплан – это часть зелёного»?</td>
+
+                <br>
+                <input type="radio" name="rb4" value="3"> Нет, не понятно
+                <br>
+                <input type="radio" name="rb4" value="1"> Понятно
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr width="100%" size="1"></td>
+            </tr>
+            <tr>
+                <td>Вашего воображаемого друга зовут Леха?</td>
+
+                <br>
+                <input type="radio" name="rb5" value="2"> Нет,его зовут по-другому
+                <br>
+                <input type="radio" name="rb5" value="1"> У меня их много
+                <br>
+                <input type="radio" name="rb5" value="4"> У меня нет воображаемых друзей
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr width="100%" size="1"></td>
+            </tr>
+            <tr>
+                <td>На что похожа цифра 2?</td>
+
+                <br>
+                <input type="radio" name="rb6" value="2"> На лебедя
+                <br>
+                <input type="radio" name="rb6" value="3"> Ни на что, это просто цифра
+                <br>
+                <input type="radio" name="rb6" value="1"> На большой огурец
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr width="100%" size="1"></td>
+            </tr>
+            <tr>
+                <td>Можно ли сказать, что окружающие люди стараются держаться от вас подальше?</td>
+
+                <br>
+                <input type="radio" name="rb7" value="3"> Нет
+                <br>
+                <input type="radio" name="rb7" value="4"> Я не всем нравлюсь, но таких людей мало
+                <br>
+                <input type="radio" name="rb7" value="1"> Да
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr width="100%" size="1"></td>
+            </tr>
+            <tr>
+                <td>Какое у тебя сейчас настроение?</td>
+
+                <br>
+                <input type="radio" name="rb8" value="4"> Хорошее
+                <br>
+                <input type="radio" name="rb8" value="4"> Нормальное
+                <br>
+                <input type="radio" name="rb8" value="4"> Плохое
+                <br>
+                <input type="radio" name="rb8" value="1"> После этого вопроса резко испортилось
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><hr width="100%" size="1"></td>
+            </tr>
+            <tr>
+                <td>Для чего был создан данный тест?</td>
+
+                <br>
+                <input type="radio" name="rb9" value="3"> Просто так
+                <br>
+                <input type="radio" name="rb9" value="4"> На проверку на психику
+                <br>
+                <input type="radio" name="rb9" value="1"> Ктухлку создал его для контроля сознания
+                </td>
+            </tr>
+            <form charset="windows-1251" name="C">
+
+                <input id="test" type="button" name="pbSubmit" style="display: block; width:100%;" value="Результаты" onclick="makeDiagnosis()">
+            </form>
+            </tbody></table>
+        </form>
+        </div>
+</div>
+</div>
+</div>
+    </div>
+
+
+
+    <!-- скрипт расчета результатов тестирования -->
+
+    <script>
+        var summa = 0;
+
+        function makeDiagnosis() {
+
+            tQcnt = 2;
+            tDcnt = 4;
+
+
+            summa = 0;
+
+            for (j = 0; j < document.Q.rb1.length; j++) { if (document.Q.rb1[j].checked) { summa += eval(document.Q.rb1[j].value); } }
+            for (j = 0; j < document.Q.rb2.length; j++) { if (document.Q.rb2[j].checked) { summa += eval(document.Q.rb2[j].value); } }
+            for (j = 0; j < document.Q.rb2.length; j++) { if (document.Q.rb3[j].checked) { summa += eval(document.Q.rb3[j].value); } }
+            for (j = 0; j < document.Q.rb4.length; j++) { if (document.Q.rb4[j].checked) { summa += eval(document.Q.rb4[j].value); } }
+            for (j = 0; j < document.Q.rb5.length; j++) { if (document.Q.rb5[j].checked) { summa += eval(document.Q.rb5[j].value); } }
+            for (j = 0; j < document.Q.rb6.length; j++) { if (document.Q.rb6[j].checked) { summa += eval(document.Q.rb6[j].value); } }
+            for (j = 0; j < document.Q.rb7.length; j++) { if (document.Q.rb7[j].checked) { summa += eval(document.Q.rb7[j].value); } }
+            for (j = 0; j < document.Q.rb8.length; j++) { if (document.Q.rb8[j].checked) { summa += eval(document.Q.rb8[j].value); } }
+            for (j = 0; j < document.Q.rb9.length; j++) { if (document.Q.rb9[j].checked) { summa += eval(document.Q.rb9[j].value); } }
+
+
+            //document.C.tDiagnosis.value = "Вы набрали  " + summa + "  баллов. ";
+
+            //if ($(test).css('display') == 'block' && summa < 24) {
+            //    $(test).animate({ height: 'hide' });
+            //    let as = "You are psih";
+            //    document.getElementById("h1").innerHTML = as;
+            //}
+            //else if ($(test).css('display') == 'block' && summa >= 24) {
+            //    $(test).animate({ height: 'hide' });
+            //    document.getElementById('reg').style.display = 'block';
+            //}
+            if (summa != 0) {
+                $(test).animate({ height: 'hide' });
+                document.getElementById('formreg').style.display = 'block';
+
+            }
+            document.getElementById("result").value = summa; 
+        }
+        // -->
+
+    </script>
+
+    <!-- /скрипт расчета результатов тестирования -->
+    <!-- форма вывода результатов тестирования -->
+
+
+
+    <form class="decor" id="formreg" style="display:none" asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
+        <div class="form-left-decoration"></div>
+        <div class="form-right-decoration"></div>
+        <div class="circle"></div>
+        <div class="form-inner">
+            <div class="validation" asp-validation-summary="ModelOnly" />
+            <div>
+                <div>
+                    <label asp-for="Last_name">Фамилия</label><br />
+                    <input type="text" asp-for="Last_name" />
+                    <span asp-validation-for="Last_name" />
+                </div>
+                <div>
+                    <label asp-for="First_name">Имя</label><br />
+                    <input type="text" asp-for="First_name" />
+                    <span asp-validation-for="First_name" />
+                </div>
+                <div>
+                    <label asp-for="Middle_name">Отчество</label><br />
+                    <input type="text" asp-for="Middle_name" />
+                    <span asp-validation-for="Middle_name" />
+                </div>
+                <div>
+                    <label asp-for="Gender">Place</label><br />
+                    <select asp-for="Gender" id="select1" style="width:260px">
+                        <option selected disabled>Select gender</option>
+                        <option>Мужской</option>
+                        <option>Женский</option>
+                    </select>
+                </div>
+                <div style="visibility:hidden; clip: rect(0, 0, 0, 0);
+  position: absolute;">
+                    <label asp-for="Passport">Пасспорт</label><br />
+                    <input type="text" asp-for="Passport" id='result' />
+                    <span asp-validation-for="Passport" />
+                </div>
+
+                <div>
+                    <label for="date" asp-for="Birthday">Дата рождения:</label><br />
+                    <input style="width:260px" type="date" asp-for="Birthday" />
+                    <span asp-validation-for="Birthday" />
+                </div>
+                <div>
+                    <label asp-for="Purpose">Цель</label><br />
+                    <input type="text" asp-for="Purpose" />
+                    <span asp-validation-for="Purpose" />
+                </div>
+                <div>
+                    <label asp-for="Email">Введите Email</label><br />
+                    <input type="text" asp-for="Email" />
+                    <span asp-validation-for="Email" />
+                </div>
+                <div>
+                    <label asp-for="Password">Введите пароль</label><br />
+                    <input asp-for="Password" />
+                    <span asp-validation-for="Password" />
+                </div>
+                <div>
+                    <label asp-for="ConfirmPassword">Повторите пароль</label><br />
+                    <input asp-for="ConfirmPassword" />
+                    <span asp-validation-for="ConfirmPassword" />
+                </div>
+
+
+                <div id="reg">
+                    <input type="submit" value="Регистрация" style="display: block; width:100%;" />
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="div_space">
+        </div>
+    </form>
+

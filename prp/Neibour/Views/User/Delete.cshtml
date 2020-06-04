@@ -1,0 +1,69 @@
+﻿@model Neibour.Models.Ads
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>АЙди</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id_ad)
+        </dd>
+        <dt>Ай ди юзер</dt>
+        <dd>
+            @Html.DisplayFor(model => model.id_user)
+        </dd>
+        <dt>Title</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>Description</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>Cost</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+        <dt>Date</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt>Place</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Place)
+        </dd>
+        <dt>Kolvo people</dt>
+        <dd>
+            @Html.DisplayFor(model => model.People)
+        </dd>
+    </dl>
+    @foreach (var item in ViewBag.data)
+    {
+        <div id="profile" class="card">
+
+            @if (item.Image1 != null)
+            {
+                <img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image1))" />
+            }
+            @if (item.Image2 != null)
+            {
+                <img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image2))" />
+            }
+            @if (item.Image3 != null)
+            {
+                <img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image3))" />
+            }
+        </div>
+    }
+        <div>
+            <form asp-controller="User" asp-action="Delete" method="post">
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default" value="Удалить" />
+                </div>
+            </form>
+        </div>
+    </div>

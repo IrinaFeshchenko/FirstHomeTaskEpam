@@ -1,0 +1,192 @@
+﻿
+@{
+    ViewData["Title"] = "Watch_add";
+}
+
+<style type="text/css">
+
+
+    .ads_name {
+        margin-left: auto;
+        margin-right: auto;
+        width: 20em
+    }
+
+    .ads_title {
+        margin-left: auto;
+        margin-right: auto;
+        width: 20em
+    }
+
+    .ads_des {
+        margin-left: auto;
+        margin-right: auto;
+        width: 20em
+    }
+    
+
+    .div_ad {
+        text-align: center;
+    }
+
+    .ads_cost {
+        font-weight: bold;
+        color: #57ba3a;
+    }
+    .space {
+        margin-bottom:25px;
+    }
+    button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+        button:hover, a:hover {
+            opacity: 0.7;
+        }
+
+    .menu {
+        position: absolute;
+        padding: 0;
+        display: flex;
+    }
+
+        .menu li {
+            position: relative;
+            list-style: none;
+        }
+
+            .menu li a {
+                position: relative;
+                display: block;
+                color: cornflowerblue;
+                line-height: 40px;
+                text-align: center;
+                text-decoration: none;
+                text-transform: uppercase;
+                transition: .5s;
+                box-sizing: border-box;
+            }
+
+                .menu li a span {
+                    position: absolute;
+                    width: 25%;
+                    height: 100%;
+                    background-color: cornflowerblue;
+                    z-index: -1;
+                    transform-origin: top;
+                    transform: scaleY(0);
+                    transition: transform .5s;
+                }
+
+    .prof_space {
+        margin-top: 25px;
+    }
+
+    .menu li a:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+        .menu li a:hover span {
+            transform-origin: bottom;
+            transform: scaleY(1);
+        }
+
+    .menu li a span:nth-child(1) {
+        left: 0;
+        transition-delay: 0s;
+    }
+
+    .menu li a span:nth-child(2) {
+        left: 25%;
+        transition-delay: 0.15s;
+    }
+
+    .menu li a span:nth-child(3) {
+        left: 50%;
+        transition-delay: 0.3s;
+    }
+
+    .menu li a span:nth-child(4) {
+        left: 75%;
+        transition-delay: 0.45s;
+    }
+
+    .footer_space {
+        margin-bottom: 40px;
+    }
+
+    .header_space {
+        margin-top: 40px;
+    }
+</style>
+
+@foreach (var item in ViewBag.my_ad)
+{
+<div id="profile" class="div_ad">
+    <h1 class="ads_name">@item.Last_name  @item.First_name</h1>
+    <div>
+        @if (item.Image1 != null)
+        {
+
+            <img style='width:240px; height:160px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image1))" />
+
+        }
+        else
+        {
+            <img src="~/css/nophoto.jpg" style="width:240px; height:160px;">
+        }
+        @if (item.Image2 != null)
+        {
+            <img style='width:240px; height:160px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image2))" />
+        }
+        else
+        {
+            <img src="~/css/nophoto.jpg" style="width:240px; height:160px;">
+        }
+        @if (item.Image3 != null)
+        {
+            <img style='width:240px; height:160px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image3))" />
+        }
+        else
+        {
+            <img src="~/css/nophoto.jpg" style="width:240px; height:160px;">
+        }
+    </div>
+
+    <h1 class="ads_title">@item.Title</h1>
+    <p class="ads_des">Опис: @item.Description</p>
+    <p class="ads_cost">Ціна: @item.Cost гривень/місяць</p>
+    <p class="ads_date">Дата створення: @item.date</p>
+    <p>Тип: @item.Place</p>
+    <p>Кількість місць: @item.People</p>
+    <a asp-action="Profile_from_add" asp-controller="User" asp-route-id="@item.id_user">Профиль пользователя</a>
+    <br />
+    <hr noshade size="3" width="35%" />
+    <div style="position:relative;left:720px;top:-17px">
+        <ul class="menu">
+            <li>
+                <div class="item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="All_ads_of_site">
+                        Повернутися назад до оголошень сайту
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="space"></div>
+</div>
+}

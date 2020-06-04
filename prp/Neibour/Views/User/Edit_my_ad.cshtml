@@ -1,0 +1,407 @@
+﻿@model Neibour.Models.Ads
+@{
+    ViewData["Title"] = "Edit_my_ad";
+    string imgSrc=null;
+    string imgSrc1=null;
+    string imgSrc2=null;
+    var Id_user = Model.Id_ad;
+    var add_MSg = new Ads();
+    if (Model.Image1 != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Image1);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+    if(Model.Image2!=null)
+    {
+        var base641 = Convert.ToBase64String(Model.Image2);
+        imgSrc1 = String.Format("data:image/gif;base64,{0}", base641);
+    }
+    if(Model.Image3!=null)
+    {
+        var base642 = Convert.ToBase64String(Model.Image3);
+        imgSrc2 = String.Format("data:image/gif;base64,{0}", base642);
+    }
+}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e6f4fd;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .ui-form {
+            max-width: 700px;
+            padding: 80px 30px 30px;
+            margin: 50px auto 30px;
+            background: white;
+        }
+
+            .ui-form h3 {
+                position: relative;
+                z-index: 5;
+                margin: 0 0 60px;
+                text-align: center;
+                color: #4a90e2;
+                font-size: 30px;
+                font-weight: normal;
+            }
+
+                .ui-form h3:before {
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    left: 60px;
+                    top: -30px;
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                    background: #fee8e4;
+                }
+
+                .ui-form h3:after {
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    right: 50px;
+                    top: -40px;
+                    width: 0;
+                    height: 0;
+                    border-left: 55px solid transparent;
+                    border-right: 55px solid transparent;
+                    border-bottom: 90px solid #ffe3b5;
+                }
+
+        .form-row {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0 10px;
+            line-height: 40px;
+            font-family: 'Roboto', sans-serif;
+            background: none;
+            border-width: 0;
+            border-bottom: 2px solid #4a90e2;
+            transition: all 0.2s ease;
+        }
+
+        .form-row label {
+            position: absolute;
+            left: 13px;
+            color: #9d959d;
+            font-size: 20px;
+            font-weight: 300;
+            /*transform: translateY(-35px);*/
+            transition: all 0.2s ease;
+        }
+
+        .form-row input:focus {
+            outline: 0;
+            border-color: #F77A52;
+        }
+
+            .form-row input:focus + label,
+            .form-row input:valid + label {
+                transform: translateY(-10px);
+                margin-left: -14px;
+                font-size: 14px;
+                font-weight: 400;
+                outline: 0;
+                border-color: #F77A52;
+                color: #F77A52;
+            }
+
+        .ui-form input[type="submit"] {
+            width: 100%;
+            padding: 0;
+            line-height: 42px;
+            background: #4a90e2;
+            border-width: 0;
+            color: white;
+            font-size: 20px;
+        }
+
+        .ui-form p {
+            margin: 0;
+            padding-top: 10px;
+        }
+
+        select {
+            margin-bottom: 25px;
+            border: 1px solid #111;
+            background: transparent;
+            width: 250px;
+            padding: 5px 35px 5px 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            height: 34px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .custom-file-input {
+            color: transparent;
+        }
+
+            .custom-file-input::-webkit-file-upload-button {
+                visibility: hidden;
+            }
+
+            .custom-file-input::before {
+                content: 'Select some files';
+                color: black;
+                display: inline-block;
+                background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+                border: 1px solid #999;
+                border-radius: 3px;
+                padding: 5px 8px;
+                outline: none;
+                white-space: nowrap;
+                -webkit-user-select: none;
+                cursor: pointer;
+                text-shadow: 1px 1px #fff;
+                font-weight: 700;
+                font-size: 10pt;
+            }
+
+            .custom-file-input:hover::before {
+                border-color: black;
+            }
+
+            .custom-file-input:active {
+                outline: 0;
+            }
+
+                .custom-file-input:active::before {
+                    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+                }
+
+        .inputfile {
+            width: 300px;
+            height: 30px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+            .inputfile + label {
+                font-size: 20px;
+                font-weight: 700;
+                color: black;
+                background-color: lightskyblue;
+                display: inline-block;
+            }
+
+                .inputfile:focus + label,
+                .inputfile + label:hover {
+                    background-color: deepskyblue;
+                }
+
+            .inputfile + label {
+                cursor: pointer; /* "hand" cursor */
+            }
+
+                button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+        button:hover, a:hover {
+            opacity: 0.7;
+        }
+
+    .menu {
+        position: absolute;
+        padding: 0;
+        display: flex;
+    }
+
+        .menu li {
+            position: relative;
+            list-style: none;
+        }
+
+            .menu li a {
+                position: relative;
+                display: block;
+                color: cornflowerblue;
+                line-height: 40px;
+                text-align: center;
+                text-decoration: none;
+                text-transform: uppercase;
+                transition: .5s;
+                box-sizing: border-box;
+            }
+
+                .menu li a span {
+                    position: absolute;
+                    width: 25%;
+                    height: 100%;
+                    background-color: cornflowerblue;
+                    z-index: -1;
+                    transform-origin: top;
+                    transform: scaleY(0);
+                    transition: transform .5s;
+                }
+
+    .prof_space {
+        margin-top: 25px;
+    }
+
+    .menu li a:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+        .menu li a:hover span {
+            transform-origin: bottom;
+            transform: scaleY(1);
+        }
+
+    .menu li a span:nth-child(1) {
+        left: 0;
+        transition-delay: 0s;
+    }
+
+    .menu li a span:nth-child(2) {
+        left: 25%;
+        transition-delay: 0.15s;
+    }
+
+    .menu li a span:nth-child(3) {
+        left: 50%;
+        transition-delay: 0.3s;
+    }
+
+    .menu li a span:nth-child(4) {
+        left: 75%;
+        transition-delay: 0.45s;
+    }
+    </style>
+
+
+
+    <div style="position:relative;left:750px;top:-17px">
+        <ul class="menu">
+            <li>
+                <div class="item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="ADS_with_search">
+                        Повернутися назад до оголошень
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <form asp-action="Edit_my_ad" asp-controller="User" asp-route-id="@Model.Id_ad" enctype="multipart/form-data" method="post" class="ui-form">
+        <h3>Редагувати моє оголошення</h3>
+        <div class="form-group" style="visibility:hidden; clip: rect(0, 0, 0, 0);
+  position: absolute;">
+            <label asp-for="Id_ad" class="control-label">Id</label>
+            <input type="number" asp-for="Id_ad" class="form-control" />
+        </div>
+        <div class="form-group" style="visibility:hidden ;clip: rect(0, 0, 0, 0);
+  position: absolute;">
+            <label asp-for="id_user" class="control-label">Id_user</label>
+            <input type="number" asp-for="id_user" class="form-control" />
+        </div>
+        <div class="form-row">
+            <input type="text" asp-for="Title" class="form-control" /><label asp-for="Title" class="control-label">Заголовок</label>
+        </div>
+        <div class="form-row">
+            <input type="text" asp-for="Description" class="form-control" /><label asp-for="Description" class="control-label">Опис</label>
+        </div>
+        <div class="form-row">
+            <input type="text" asp-for="Cost" class="form-control" /><label asp-for="Cost" class="control-label">Вартість</label>
+        </div>
+        <div style="visibility: hidden; clip: rect(0, 0, 0, 0);
+  position: absolute;">
+            <label for="date" asp-for="Date">Дата</label><br />
+            <input type="date" asp-for="Date" />
+            <span asp-validation-for="Date" />
+        </div>
+        <div>
+            <label asp-for="Place" class="control-label" style=" color: #9d959d;font-size: 20px;">Місце</label>
+            <select asp-for="Place" id="select1">
+                <option>Квартира 3-х</option>
+                <option>Квартира 2-х</option>
+                <option>Дом 1 этаж</option>
+                <option>Дом 2 этажа</option>
+                <option>Дача</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="People" style=" color: #9d959d;font-size: 20px;">Кількість людей</label><br />
+            <select asp-for="People" id="select1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+        </div>
+        @if (Model.Image1 != null)
+        {
+            <img width="150" height="150" src="@imgSrc" />
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="deletePhoto1" asp-route-id="@Id_user">Edit_profile</a>
+        }
+        else
+        {
+            <img width="150" height="150" src="~/css/nophoto.jpg" />
+        }
+        <div class="form-group">
+            <input type="file" asp-for="Image1" class="inputfile" /><label asp-for="Image1" class="control-label">Змінити зображення 1</label>
+        </div>
+        @if (Model.Image2 != null)
+        {
+            <img width="150" height="150" src="@imgSrc1" />
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="DeletePhoto" asp-route-id="@Id_user">Edit_profile</a>
+        }
+        else
+        {
+            <img width="150" height="150" src="~/css/nophoto.jpg" />
+        }
+        <div class="form-group">
+            <input type="file" asp-for="Image2" class="inputfile" /><label asp-for="Image2" class="control-label">Змінити зображення 2</label>
+        </div>
+        @if (Model.Image3 != null)
+        {
+            <img width="150" height="150" src="@imgSrc2" />
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="deletePhoto1" asp-route-id="@Id_user">Edit_profile</a>
+        }
+        else
+        {
+            <img width="150" height="150" src="~/css/nophoto.jpg" />
+        }
+        <div class="form-group">
+            <input type="file" asp-for="Image3" class="inputfile" /><label asp-for="Image3" class="control-label">Змінити зображення 3</label>
+        </div>
+
+
+
+        </tr>
+        <div class="form-group">
+            <input type="submit" value="Зберегти" class="btn btn-default" />
+        </div>
+    </form>

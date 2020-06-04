@@ -1,0 +1,86 @@
+﻿@model Neibour.Models.Dialogs
+@using Neibour.ViewModels
+@using Neibour.Models
+
+
+@{
+    ViewData["Title"] = "Chat";
+}
+
+    <style type="text/css">
+
+        .row_chat {
+            background: url("~/css/3.png")no-repeat center center;
+            background-size: cover;
+        }
+        .group {
+            padding: 13px;
+            border-radius: 12px;
+            background: rgb(57, 125, 192);
+            margin: 5px 0px;
+            font-weight: bolder;
+            color: black;
+            cursor: pointer;
+        }
+
+        .chat_body {
+            height: 520px;
+            overflow: scroll;
+        }
+
+        .less_padding {
+            padding: 2px;
+        }
+
+        .chat_message {
+            padding: 13px;
+            border-radius: 12px;
+            width: 50%;
+            background: #85C1E9;
+            margin: 6px 4px;
+        }
+
+        .chat_main {
+            background-color: #957bbe;
+            height: 520;
+            padding: 0px;
+        }
+
+        .group_main {
+            background-color: #85C1E9;
+        }
+    
+        
+    </style>
+    <h3 class="text-center" style="text-align:center; margin-bottom:15px;">Ваші контакти</h3>
+    <div class="container">
+
+        <div class="row_chat">
+
+            <div class="col-md-2 less_padding" style="margin-bottom:-300px">
+                <div class="col group_main">
+                    <div class="text-center"> Пользователи </div>
+                    <div clsss="row" style="height:500px;overflow: scroll;" id="groups">
+                        <input type="hidden" id="currentGroup">
+                        <!-- List groups-->
+                        @foreach (var group in ViewBag.datad)
+                        {
+                            <a value="Dialog" asp-controller="Chat" asp-action="GetComments" asp-route-id="@group.Id_dialog" id="button1" data-id="@group.Id_dialog"><p>@group.User2_Last_name @group.User2_name</p></a>
+                        }
+                    </div>
+                </div>
+            <div>
+                <img style=' position:relative;bottom: 450px; left:181px' src="~/css/3.png" width="900" height="300" />
+            </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>

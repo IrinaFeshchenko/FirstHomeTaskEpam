@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewData["Title"] = "Profile";
+}
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+
+        top: auto;
+        text-align: center;
+    }
+
+    .title {
+        color: grey;
+        font-size: 18px;
+    }
+
+    button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    button:hover, a:hover {
+        opacity: 0.7;
+    }
+
+    .menu {
+        position: absolute;
+        padding: 0;
+        display: flex;
+    }
+
+    .menu li {
+        position: relative;
+        list-style: none;
+    }
+
+    .menu li a {
+        position: relative;
+        display: block;
+        color: cornflowerblue;
+        line-height: 40px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: .5s;
+        box-sizing: border-box;
+    }
+
+    .menu li a span {
+        position: absolute;
+        width: 25%;
+        height: 100%;
+        background-color: cornflowerblue;
+        z-index: -1;
+        transform-origin: top;
+        transform: scaleY(0);
+        transition: transform .5s;
+    }
+    .prof_space {
+        margin-top: 25px;
+    }
+    .menu li a:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .menu li a:hover span {
+        transform-origin: bottom;
+        transform: scaleY(1);
+    }
+
+    .menu li a span:nth-child(1) {
+        left: 0;
+        transition-delay: 0s;
+    }
+
+    .menu li a span:nth-child(2) {
+        left: 25%;
+        transition-delay: 0.15s;
+    }
+
+    .menu li a span:nth-child(3) {
+        left: 50%;
+        transition-delay: 0.3s;
+    }
+
+    .menu li a span:nth-child(4) {
+        left: 75%;
+        transition-delay: 0.45s;
+    }
+    .footer_space {
+        margin-bottom:40px;
+    }
+    .header_space {
+        margin-top:40px;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@foreach (var item in ViewBag.data)
+{
+    <div style="position:relative;left:90px;">
+        <ul class="menu">
+            <li>
+                <div class="item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Ads">Додати оголошення
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="ADS_with_search">Мои оголошення
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Edit_profile" asp-route-id="@item.Id_user">Змінити профіль
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+                </div>
+                </li>
+    </ul>
+    </div>
+    <div class="header_space"></div>
+    <div id="profile" class="card">
+        <div class="prof_space"></div>
+        @if (item.Profile == null)
+        {
+            <img src="~/css/nophoto.jpg" alt="John" style="width:100%">
+        }
+        else
+        {
+            <img style='width:100%' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Profile))" />
+        }
+        <h1>@item.Last_name @item.First_name @item.Middle_name</h1>
+        <p class="title"> @item.Email</p>
+        <p>@item.Birthday</p>
+        <p>@item.Purpose</p>
+        <p>@item.Date_of_registration</p>
+    </div>
+    <div class="footer_space"></div>
+}
+

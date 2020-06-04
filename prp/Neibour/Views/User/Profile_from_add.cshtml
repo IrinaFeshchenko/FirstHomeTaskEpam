@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "Profile_from_add";
+}
+
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .title {
+        color: grey;
+        font-size: 18px;
+    }
+
+    button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+
+        button:hover, a:hover {
+            opacity: 0.7;
+        }
+    .add_user {
+        text-align: center;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h1 style="text-align:center; margin-bottom:15px;">Профіль користувача</h1>
+@foreach (var item in ViewBag.data)
+{
+
+    <div id="profile" class="card">
+        @if (item.Profile == null)
+        {
+            <img src="~/css/nophoto.jpg" alt="John" style="width:100%">
+        }
+        else
+        {
+            <img style='width:100%' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Profile))" />
+        }
+        <h1>@item.Last_name @item.First_name @item.Middle_name</h1>
+        <p class="title"> @item.Email</p>
+        <p>@item.Birthday</p>
+        <p>@item.Purpose</p>
+        <p>@item.Date_of_registration</p>
+    </div>
+    <p class="add_user"><a asp-action="Chat" asp-controller="User" asp-route-id="@item.Id_user">Додати до діалогу</a></p>
+}

@@ -1,0 +1,137 @@
+﻿@model Neibour.ViewModels.Ads_of_users
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+    <style type="text/css">
+
+        .filter {
+         
+        }
+        .ads_name {
+            margin-left: auto;
+            margin-right: auto;
+            width: 20em
+        }
+        .ads_title {
+            margin-left: auto;
+            margin-right: auto;
+            width: 20em
+        }
+        .ads_des {
+            margin-left: auto;
+            margin-right: auto;
+            width: 20em
+        }
+        .div_ad {
+            text-align:center;
+        }
+        .ads_cost {
+            margin-left: auto;
+            margin-right: auto;
+            width: 20em;
+            font-weight:bold;
+            color: #57ba3a;
+        }
+        .form-inline {
+            margin-left: auto;
+            margin-right: auto;
+            width: 46em;
+        }
+        select {
+            position: relative;
+            display: block;
+            width: 100%;
+            margin: 0 auto;
+            font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+            font-size: 16px;
+            color: #60666d;
+        }
+        .form-inline {
+            font-size: 18px;
+            font-family: 'Helvetica Neue';
+        }
+        .btn {
+            padding:2px,2px,2px,2px;
+            font-size: 24px;
+            border: 4px double green;
+            border-style:outset;
+            margin-left:15px;
+        }
+    
+    </style>
+    <form method="get" asp-action="_AdsFilter" asp-controller="User">
+        <div class="form-inline form-group">
+
+            <label class="control-label">Стать:&nbsp</label>
+            <div>
+                <select id="sel" asp-for="Gender" name="gender">
+                    <option value="All">Не важливо</option>
+                    <option value="Мужской">Чоловічій</option>
+                    <option value="Женский">Жіночій</option>
+                </select>
+            </div>
+            <label class="control-label">&nbspТип нерухомості:&nbsp</label>
+            <div>
+                <select id="sel" asp-for="Place" name="company">
+                    <option value="All">Вся нерухомість</option>
+                    <option value="Квартира 3-х">Квартира 3-х</option>
+                    <option value="Квартира 2-х">Квартира 2-х</option>
+                    <option value="Дом 1 этаж">Дім 1 этаж</option>
+                    <option value="Дом 2 этажа">Дім 2 этажа</option>
+                    <option value="Дача">Дача</option>
+                </select>
+            </div>
+            <label class="control-label">&nbspКількість місць:&nbsp</label>
+            <div>
+                <select name="people" asp-for="People" id="select1">
+                    <option value="0">Не важливо</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+            <input type="submit" value="Пошук" class="btn btn-default" />
+        </div>
+        <hr />
+    </form>
+
+@foreach (var item in ViewBag.data)
+{
+<div id="profile" class="div_ad">
+    <h1 class="ads_name">@item.Last_name  @item.First_name</h1>
+    <div>
+        @if (item.Image1 != null)
+        {
+
+            <img style='width:180px; height:120px;data-holder-rendered="true"' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image1))" />
+
+        }
+        else if (item.Image2 != null)
+        {
+            <img style='width:180px; height:120px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image2))" />
+
+        }
+        else if (item.Image3 != null)
+        {
+            <img style='width:180px; height:120px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(item.Image3))" />
+
+        }
+        else
+        {
+            <img src="~/css/nophoto.jpg" style="width:180px; height:120px;">
+
+        }
+    </div>
+    <h1 class="ads_title">@item.Title</h1>
+    <div class="ads_des">Опис: @item.Description</div>
+    <p class="ads_cost">Ціна: @item.Cost гривень/місяць</p>
+    <p class="ads_date">Дата створення: @item.date</p>
+
+    <a asp-action="Watch_add" asp-controller="User" asp-route-id="@item.id_ad">Подробнее</a> |
+    <a asp-action="Chat" asp-controller="User" asp-route-id="@item.id_user">Написать пользователю</a>
+    <hr noshade size="3" width="35%">
+</div>
+}

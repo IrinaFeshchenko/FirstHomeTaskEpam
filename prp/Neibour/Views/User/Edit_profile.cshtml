@@ -1,0 +1,364 @@
+﻿@model Neibour.Models.User
+@{
+    string imgSrc = null;
+    ViewData["Title"] = "Edit_profile";
+    if (Model.Profile != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Profile);
+        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    }
+}
+<style>
+    * {box-sizing: border-box;}
+body {
+  background: #e6f4fd;
+  font-family: 'Roboto', sans-serif;
+}
+.ui-form {
+  max-width: 700px;
+  padding: 80px 30px 30px;
+  margin: 50px auto 30px;
+  background: white;
+}
+.ui-form h3 {
+  position: relative;
+  z-index: 5;
+  margin: 0 0 60px;
+  text-align: center;
+  color: #4a90e2;
+  font-size: 30px;
+  font-weight: normal;
+}
+.ui-form h3:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 60px;
+  top: -30px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #fee8e4;
+}
+.ui-form h3:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 50px;
+  top: -40px;
+  width: 0;
+  height: 0;
+  border-left: 55px solid transparent;
+  border-right: 55px solid transparent;
+  border-bottom: 90px solid #ffe3b5;
+}
+.form-row {
+  position: relative;
+  margin-bottom: 40px;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0 10px;
+  line-height: 40px;
+  font-family: 'Roboto', sans-serif;
+  background: none;
+  border-width: 0;
+  border-bottom: 2px solid #4a90e2;
+  transition: all 0.2s ease;
+}
+.form-row label {
+  position: absolute;
+  left: 13px;
+  color: #F77A52;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 300;
+  margin-left: -14px;
+  transform: translateY(-35px);
+  transition: all 0.2s ease;
+}
+.form-row input:focus {
+  outline: 0;
+  border-color: #F77A52;
+}
+    .form-row input:focus + label,
+    .form-row input:valid + label {
+        transform: translateY(-10px);
+        margin-left: -14px;
+        font-size: 14px;
+        font-weight: 400;
+        outline: 0;
+        border-color: #F77A52;
+        color: #F77A52;
+    }
+.ui-form input[type="submit"] {
+  width: 100%;
+  padding: 0;
+  line-height: 42px;
+  background: #4a90e2;
+  border-width: 0;
+  color: white;
+  font-size: 20px;
+}
+.ui-form p {
+  margin: 0;
+  padding-top: 10px;
+}
+select {
+    border: 1px solid #111;
+   background: transparent;
+   width: 150px;
+   padding: 5px 35px 5px 5px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   height: 34px;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
+.inputfile {
+	width: 300px;
+	height: 30px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+    font-size: 20px;
+    font-weight: 700;
+    color: black;
+    background-color: lightskyblue;
+    display: inline-block;
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: deepskyblue;
+}
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+    .space {
+        margin-bottom:10px;
+    }
+
+        button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    button:hover, a:hover {
+        opacity: 0.7;
+    }
+
+    .menu {
+        position: absolute;
+        padding: 0;
+        display: flex;
+    }
+
+    .menu li {
+        position: relative;
+        list-style: none;
+    }
+
+    .menu li a {
+        position: relative;
+        display: block;
+        color: cornflowerblue;
+        line-height: 40px;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: .5s;
+        box-sizing: border-box;
+    }
+
+    .menu li a span {
+        position: absolute;
+        width: 25%;
+        height: 100%;
+        background-color: cornflowerblue;
+        z-index: -1;
+        transform-origin: top;
+        transform: scaleY(0);
+        transition: transform .5s;
+    }
+    .prof_space {
+        margin-top: 25px;
+    }
+    .menu li a:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .menu li a:hover span {
+        transform-origin: bottom;
+        transform: scaleY(1);
+    }
+
+    .menu li a span:nth-child(1) {
+        left: 0;
+        transition-delay: 0s;
+    }
+
+    .menu li a span:nth-child(2) {
+        left: 25%;
+        transition-delay: 0.15s;
+    }
+
+    .menu li a span:nth-child(3) {
+        left: 50%;
+        transition-delay: 0.3s;
+    }
+
+    .menu li a span:nth-child(4) {
+        left: 75%;
+        transition-delay: 0.45s;
+    }
+    .footer_space {
+        margin-bottom:40px;
+    }
+    .header_space {
+        margin-top:40px;
+    }
+
+</style>
+<div style="position:relative;left:770px;top:-18px">
+<ul class="menu">
+    <li>
+        <div class="item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Profile">
+                Повернутися назад до профілю
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+    </li>
+</ul>
+</div>
+    <form asp-action="Edit_profile" asp-controller="User" asp-route-id="@Model.Id_user" enctype="multipart/form-data" method="post" class="ui-form">
+        <h3>Редагувати профіль</h3>
+        <div class="form-group" style="visibility:hidden; clip: rect(0, 0, 0, 0);
+  position: absolute;">
+            <label asp-for="Id_user" class="control-label">Id</label>
+            <input type="number" asp-for="Id_user" class="form-control" />
+        </div>
+        <div class="form-row">
+            <input type="text" asp-for="Last_name" class="form-control" /><label asp-for="Last_name" class="control-label">Прізвище</label>
+        </div>
+        <div class="form-row">
+            <input type="text" asp-for="First_name" class="form-control" /><label asp-for="First_name" class="control-label">Ім'я</label>
+        </div>
+        <div class="form-row">
+            <input type="text" asp-for="Middle_name" class="form-control" /><label asp-for="Middle_name" class="control-label">Побатькові</label>
+        </div>
+        <div class="form-row">
+            <label asp-for="Gender" class="control-label">Стать</label><br />
+            <select asp-for="Gender" id="select1">
+                <option>Мужской</option>
+                <option>Женский</option>
+            </select>
+        </div>
+        <div class="form-group" style="visibility: hidden; clip: rect(0, 0, 0, 0); position: absolute; ">
+            <label asp-for="Passport" class="control-label">Оценка</label>
+            <input type="text" asp-for="Passport" class="form-control" />
+        </div>
+        <div style="visibility: hidden; clip: rect(0, 0, 0, 0);
+  position: absolute;">
+            <label for="date" asp-for="Birthday">Дата рождения:</label><br />
+            <input type="date" asp-for="Birthday" />
+            <span asp-validation-for="Birthday" />
+        </div>
+        <div class="form-group" style="visibility:hidden; clip: rect(0, 0, 0, 0);
+  position: absolute;">
+            <label asp-for="Purpose" class="control-label">Цель</label>
+            <input type="text" asp-for="Purpose" class="form-control" />
+        </div>
+        <div class="form-group" style="visibility:hidden; clip: rect(0, 0, 0, 0);
+  position: absolute;">
+            <label asp-for="Email" class="control-label">Почта</label>
+            <input type="text" asp-for="Email" class="form-control" />
+        </div>
+        <div class="form-row">
+            <input type="text" asp-for="Password" class="form-control" /><label asp-for="Password" class="control-label">Пароль</label>
+        </div>
+
+        <div>
+            <label for="date" asp-for="Date_of_registration">Дата реєстрації:</label><br />
+            <input type="date" asp-for="Date_of_registration" />
+            <span asp-validation-for="Date_of_registration" />
+        </div>
+        <div class="space"></div>
+        @if (Model.Profile != null)
+        {
+            <img width="150" height="150" src="@imgSrc" />
+        }
+        else
+        {
+            <img width="150" height="150" src="~/css/nophoto.jpg" />
+        }
+        <div class="space"></div>
+        </tr>
+        <div>
+            <input type="file" asp-for="Profile" class="inputfile" /><label asp-for="Profile" class="control-label" style="margin-bottom:10px;">Змінити зображення профіля</label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Зберігти" class="btn btn-default" />
+        </div>
+    </form>
+
+    @*<form asp-action="Edit_profile" asp-controller="User" asp-route-id="@Model.Id_user" enctype="multipart/form-data" method="post" class="ui-form">
+            <h3>Редагувати профіль</h3>
+            <div class="form-group" style="visibility:hidden; clip: rect(0, 0, 0, 0);
+          position: absolute;">
+                <label asp-for="Id_user" class="control-label">Id</label>
+                <input type="number" asp-for="Id_user" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="Last_name" class="form-control" required autocomplete="off" /><label asp-for="Last_name" class="control-label">Фамилия</label>
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="First_name" class="form-control" required autocomplete="off" /><label asp-for="First_name" class="control-label">Имя</label>
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="Middle_name" class="form-control" required autocomplete="off" /><label asp-for="Middle_name" class="control-label">Отчество</label>
+            </div>
+            <label asp-for="Gender">Пол</label><br />
+            <select asp-for="Gender" id="select1">
+                <option>Мужской</option>
+                <option>Женский</option>
+            </select>
+            <div class="form-group">
+                <input type="text" asp-for="Password" class="form-control" required autocomplete="off" /><label asp-for="Password" class="control-label">Пароль</label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile" class="control-label">Изображение профиля</label>
+                <input type="file" asp-for="Profile" class="custom-file-input" />
+            </div>
+            <div>
+                <label for="date" asp-for="Date_of_registration">Дата рождения:</label>
+                <input type="date" asp-for="Date_of_registration" />
+                <span asp-validation-for="Date_of_registration" />
+            </div>
+            @if (Model.Profile != null)
+            {
+                <img width="150" height="150" style="align-items:center" src="@imgSrc" />
+            }
+            else
+            {
+                <img width="150" height="150" style="align-items:center" src="~/css/nophoto.jpg" />
+            }
+            <p><input type="submit" value="Сохранить" class="btn btn-default"></p>
+        </form>*@

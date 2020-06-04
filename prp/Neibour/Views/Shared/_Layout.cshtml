@@ -1,0 +1,253 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Neibour</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style type="text/css">
+        url(https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display:400,700,400italic,700italic&subset=latin,cyrillic);
+        url(https://fonts.googleapis.com/css?family=Didact+Gothic|Comfortaa:400,700&subset=latin,cyrillic);
+        html {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            min-height: 100%;
+            display: grid;
+            margin: 0px;
+            padding: 0px;
+            font-size: 18px;
+        }
+
+        .div_header {
+            font-family: 'Comfortaa', cursive;
+        }
+
+        footer {
+            background-color: #ffffff;
+        }
+
+        .footer_space {
+            padding-top: 5px;
+            background-color: #ffffff;
+        }
+
+        h5 {
+            color: #ffffff;
+        }
+
+        a:hover {
+            text-shadow: 0 0 .65px #333, 0 0 .65px #333;
+        }
+
+        .footer_slog {
+            font-style: italic;
+            margin: 0;
+            text-align: center;
+            color: #ffd64f
+        }
+
+        .exit {
+            background: -moz-linear-gradient(#D0ECF4, #5BC9E1, #D0ECF4);
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#D0ECF4), to(#D0ECF4), color-stop(0.5, #5BC9E1));
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00BBD6', endColorstr='#EBFFFF');
+            padding: 3px 7px;
+            color: #333;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            border: 1px solid #666;
+        }
+
+        .div_space {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/css/logotip.png" width="130" height="70" /></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="div_header">
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item" style="position:relative; left:80px">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Profile"><img src="https://img.icons8.com/nolan/64/user-male-circle.png" />Профиль</a>
+                            </li>
+                            <li class="nav-item" style="position:relative; left:120px">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="All_ads_of_site"><img src="https://img.icons8.com/nolan/64/books.png" /> Оголошення</a>
+                            </li>
+                            <li class="nav-item" style="position: relative; left: 160px">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Chat" asp-action="Chat"><img src="https://img.icons8.com/nolan/64/chat.png" />Історія спілкування</a>
+                            </li>
+                            <li class="nav-item" style="position:relative; left:200px">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"><img src="https://img.icons8.com/nolan/64/books-1.png" />Правила</a>
+                            </li>
+                            <li class="nav-item" style="position:relative; left:240px">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Partners"><img src="https://img.icons8.com/nolan/64/news.png" />Новини</a>
+                            </li>
+
+                            <li class="nav-item" style="position:relative; left:300px">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User"  asp-action="Profile" ><img src="https://img.icons8.com/nolan/64/checkmark.png" /> @User.Identity.Name</a>
+                            </li>
+                            <li class="nav-item" style="position:relative; left:340px">
+                                <form class="nav-link text-dark" method="post" asp-controller="Account" asp-action="Logout">
+                                    <img src="https://img.icons8.com/nolan/64/exit.png" /><input class="exit" type="submit" value="Вихід" />
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item" style="position:relative; left:80px">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="All_ads_of_site"><img src="https://img.icons8.com/nolan/64/books.png" /> Оголошення</a>
+                            </li>
+                            <li class="nav-item" style="position:relative; left:120px">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"><img src="https://img.icons8.com/nolan/64/books-1.png" />Правила</a>
+                            </li>
+                            <li class="nav-item" style="position:relative; left:160px">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Partners"><img src="https://img.icons8.com/nolan/64/news.png" />Новини</a>
+                            </li>
+                            <li class="nav-item" style="position:relative; left:820px">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><img src="https://img.icons8.com/nolan/64/client-management.png" /> Вхід </a>
+                            </li>
+                            <li class="nav-item" style="position:relative; left:880px">
+                                <a asp-action="Register" class="nav-link text-dark" asp-controller="Account"><img src="https://img.icons8.com/nolan/64/password-check.png" />Регістрація</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="page-footer font-small unique-color-dark">
+        <div class="footer_space"></div>
+        <div style="background-color: #4f7fca;">
+            <div class="container">
+
+                <!-- Grid row-->
+                <div class="row py-4 d-flex align-items-center">
+
+                    <!-- Grid column -->
+                    <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                        <h3 class="footer_slog">It's all good in the neighborhood</h3>
+                        <h5>Слідкуйте за новинами у наших соц. мережах</h5>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+
+                    <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+                        <a href="https://www.instagram.com/neighborhood_kh/"><img src="https://img.icons8.com/color/48/000000/instagram-new.png" /></a>
+
+
+                        <a href="https://twitter.com/Neighboorhood1"><img src="https://img.icons8.com/color/48/000000/twitter.png" /></a>
+
+
+                        <a href="https://twitter.com/Neighboorhood1"><img src="https://img.icons8.com/color/50/000000/facebook.png" /></a>
+
+
+
+                    </div>
+
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row-->
+
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left mt-5">
+
+            <!-- Grid row -->
+            <div class="row mt-3">
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+                    <!-- Content -->
+                    <h6 class="text-uppercase font-weight-bold">О продукті</h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 105px;">
+                    <p>
+                        Данний продукт був створений для полегшення пошуку сусіда для совмістного проживання.
+                    </p>
+
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <!-- Grid column -->
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                    <!-- Links -->
+                    <h6 class="text-uppercase font-weight-bold">Навігація</h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 95px;">
+                    <p>
+                        <i><a class="footer_link" asp-area="" asp-controller="Home" asp-action="Privacy">Правила</a></i>
+                    </p>
+                    <p>
+                        <i> <a class="footer_link" asp-area="" asp-controller="Home" asp-action="Partners">Новини</a></i>
+                    </p>
+
+                </div>
+
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                    <!-- Links -->
+                    <h6 class="text-uppercase font-weight-bold">Контакти</h6>
+                    <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 95px;">
+                    <p>
+                        <i>Вулица Свободи 12/16</i>
+                    </p>
+                    <p>
+                        <i>Neighborhood@gmai.com</i>
+                    </p>
+                    <p>
+                        <i><a href="tel:+380990986947">+(38) 099 098 69 47</a></i>
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <div class="div_space">
+        </div>
+        <div class="footer-copyright text-center py-3">
+            © 2020 Всі права захищені
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+    @section Scripts
+      {
+        Scripts.Render("~/dist/css/bootstrap.css")  
+      }
+    </body>
+</html>

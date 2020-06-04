@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Новини проекта";
+}
+<style type="text/css">
+    .news_center {
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+    }
+    .news_text {
+        font-size: 14px;
+        margin-left: 5px;
+        margin-right: auto;
+        width: 30%;
+    }
+    big {
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+    }
+    .col-md-4 {
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    }
+
+
+    .space {
+        margin-bottom:20px;
+    }
+    </style>
+<h1 style="text-align:center; margin-bottom:15px;">
+    @ViewData["Title"]</h1>
+    <div class="col-md-4">
+
+        <big>
+            Ми відкриті
+        </big>
+        <div class="row ">
+
+            <img src="~/css/1.png" align="left" width="250"
+                 height="200" style=" border: 8px solid #ffffff;" />
+            <br>
+            <p class="news_text">
+                З радістю повідомляємо, починаючи з сьогоднішнього дня, наш ресурс відкритий.
+                Слідкуйте за новинами в наших соціальних мережах.
+            </p>
+    </div>
+    <div class="space">
+        </div>
+    </div>
+        <div class="col-md-4">
+            <big>
+                Майбутне відкриття
+            </big>
+            <div class="row">
+                <img src="~/css/mark.png" align="left" width="250"
+                     height="200" style=" border: 8px solid #ffffff;" />
+                <br>
+
+                <p class="news_text">
+                    Наша невелика команда працює що б відкритися на якнайшвидше.
+                    Слідкуйте за новинами в наших соціальних мережах.
+                </p>
+            </div>
+        </div>
+</div>

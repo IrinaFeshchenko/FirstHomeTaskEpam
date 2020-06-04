@@ -1,0 +1,75 @@
+﻿@model Neibour.ViewModels.MessagesModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<style type="text/css">
+
+    .input_text {
+        font-size: 16px;
+        padding: 10px;
+        display: block;
+        width: 500px;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .input_text:focus {
+            outline: none;
+        }
+    .text {
+        margin-left: auto;
+        margin-right: auto;
+        width: 31em
+    }
+    .text_title {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 6em
+    }
+    .vid {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 5em
+    }
+   
+    </style>
+<script>
+    document.getElementById("result").value = @ViewBag.Dialog;
+</script>
+<form id="add_ad" class="decor" asp-action="AddComment" asp-controller="Chat" method="post">
+    <div class="form-left-decoration"></div>
+    <div class="form-right-decoration"></div>
+    <div class="circle"></div>
+    <div class="form-inner">
+        <div class="validation" asp-validation-summary="ModelOnly" />
+        <div>
+            <div style="visibility: hidden; clip: rect(0, 0, 0, 0);
+  position: absolute;>
+                <label asp-for="id_dialog">dialog</label><br />
+                <input type="text" asp-for="id_dialog" value="@ViewBag.Dialog">
+                <p>@ViewBag.Dialog</p>
+                <span asp-validation-for="id_dialog" />
+            </div>
+            <div>
+                <div class="text_title">
+                    <label class="message_text" asp-for="Message">Повідомлення</label><br />
+                </div>
+                <div class="text">
+                    <input class="input_text" type="text" asp-for="Message" />
+                    </div>
+                    <span asp-validation-for="Message" />
+                </div>
+                <div>
+                    <div id="add" class="vid">
+                        <input type="submit" value="Відправити" />
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    </div>
+    </div>
+</form>

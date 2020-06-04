@@ -1,0 +1,35 @@
+﻿@model Neibour.Models.Ads
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@foreach (var a in ViewBag.addphoto)
+{
+    @if (Model.Image1 != null)
+    {
+    <img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(a.Image1))" />
+        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="deletePhoto1" asp-route-id="@a.id_user">Edit_profile</a>
+    }
+    else
+    {
+        <img width="150" height="150" src="~/css/nophoto.jpg" />
+    }
+    @if (Model.Image2 != null)
+    {
+<img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(a.Image2))" />
+        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="DeletePhoto" asp-route-id="@a.id_user">Edit_profile</a>
+    }
+    else
+    {
+        <img width="150" height="150" src="~/css/nophoto.jpg" />
+    }
+    @if (Model.Image3 != null)
+    {
+<img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(a.Image3))" />
+        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="DeletePhoto" asp-route-id="@a.id_user">Edit_profile</a>
+    }
+    else
+    {
+        <img width="150" height="150" src="~/css/nophoto.jpg" />
+    }
+}

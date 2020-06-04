@@ -1,0 +1,97 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IQueryable<Neibour.ViewModels.MessagesModel>
+@using Neibour.ViewModels;
+@{
+    ViewData["Title"] = "Chat";
+    int a = Convert.ToInt32(ViewData["Dialog"]);
+    int c = 0;
+    var add_MSg = new MessagesModel();
+
+}
+
+<style type="text/css">
+    .group {
+        padding: 13px;
+        border-radius: 12px;
+        background: rgb(57, 125, 192);
+        margin: 5px 0px;
+        font-weight: bolder;
+        color: black;
+        cursor: pointer;
+    }
+
+    .chat_body {
+        background: url("https://images.wallpaperscraft.ru/image/bashnia_zdanie_voda_171789_3840x2160.jpg")no-repeat center center;
+        background-size: cover;
+        height: 85%;
+        overflow: scroll;
+    }
+
+    .less_padding {
+        padding: 2px;
+    }
+
+    .chat_message {
+        padding: 2px;
+        border-radius: 12px;
+        background: #f8f8f6;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 25em
+    }
+
+    .chat_main {
+        background-color: #957bbe;
+        height: 520;
+        padding: 0px;
+    }
+
+    .group_main {
+        background-color: #85C1E9;
+    }
+
+    p {
+        margin: 6px;
+    }
+
+    .first {
+        color: #48b6ee
+    }
+
+    .when {
+        font-size: 12px;
+    }
+
+    .message {
+        font-size: 18px;
+    }
+    .back {
+        text-align:center;
+    }
+</style>
+<div class="chat_body">
+
+
+    <div class="chat_message float-right"></div>
+    @if (Model != null)
+    {
+
+        foreach (MessagesModel comment in ViewBag.datad)
+        {
+
+            <div class="chat_message">
+                <p class="first"> @comment.First_name</p>
+                <p class="message"> @comment.Message</p>
+                <p class="when"> @comment.WhenD</p>
+            </div>
+            <div class="col-md-7" class="chat_message " style="width: 60%;">
+            </div>
+        }
+    }
+
+</div>
+@Html.Partial("~/Views/Shared/_AddMessage.cshtml", add_MSg)
+<p class="back"><a class="nav-link" asp-area="" asp-controller="Chat" asp-action="Chat">Назад</a></p>
